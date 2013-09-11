@@ -13,7 +13,7 @@ namespace HipChat
     /// <remarks>
     /// https://www.hipchat.com/docs/api
     /// </remarks>
-    public class HipChatClient
+    public class HipChatClient : IHipChatClient
     {
         private string roomId = string.Empty;
         private string sender = string.Empty;
