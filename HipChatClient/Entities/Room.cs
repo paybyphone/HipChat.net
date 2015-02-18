@@ -51,6 +51,12 @@ namespace HipChat.Entities
         [XmlElement(ElementName = "owner_user_id")]
         public int Owner { get; set; }
 
+        /// <summary>
+        /// The JID of the room
+        /// </summary>
+        [XmlElement(ElementName = "xmpp_jid")]
+        public string XmppJid { get; set; }
+
         public Room(int id, string name, string topic, DateTime lastActive, int owner)
         {
             this.Id = id;

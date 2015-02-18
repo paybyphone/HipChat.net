@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 namespace HipChat {
-    public interface IHipChatClient {
+    public interface IHipChatClient : ISimpleHipchatMessageSender {
         /// <summary>
         /// If True, Sender and Message values are automatically truncated if they are too long.
         /// </summary>
@@ -176,5 +176,16 @@ namespace HipChat {
         string RoomHistory(DateTime date);
 
         string RoomHistory();
+    }
+
+    public interface ISimpleHipchatMessageSender {
+        void SendMessage(HipchatSendMessageParams msgParams);
+    }
+
+    public class HipchatSendMessageParams {
+        public string Message;
+        public string From;
+        public string RoomName;
+        public HipChatClient.BackgroundColor? BackgroundColor;
     }
 }

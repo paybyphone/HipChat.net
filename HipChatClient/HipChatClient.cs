@@ -270,6 +270,15 @@ namespace HipChat
             client.SendMessage(message, from, notify, color);
         }
 
+        public void SendMessage(HipchatSendMessageParams msgParams)
+        {
+            this.RoomName = msgParams.RoomName;
+            this.From = msgParams.From ?? this.From;
+            this.Color = msgParams.BackgroundColor ?? BackgroundColor.green;
+
+            SendMessage(msgParams.Message);
+        }
+
         /// <summary>
         /// Sends a message to a chat room.
         /// </summary>
