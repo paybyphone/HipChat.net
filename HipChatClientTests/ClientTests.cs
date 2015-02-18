@@ -1,11 +1,9 @@
-﻿using System.Globalization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Text;
 using System.Collections.Generic;
 using Castle.Windsor;
 using HipChat;
-using Castle.Windsor.Installer;
 using System.Reflection;
 
 namespace HipChatClientTests

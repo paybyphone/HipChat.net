@@ -179,10 +179,10 @@ namespace HipChat {
     }
 
     public interface ISimpleHipchatMessageSender {
-        void SendMessage(HipchatSendMessageParams msgParams);
+        void SendMessage(HipchatMessageParams msgParams);
     }
 
-    public class HipchatSendMessageParams {
+    public class HipchatMessageParams {
         public string Message;
         public string From;
         public string RoomName;
