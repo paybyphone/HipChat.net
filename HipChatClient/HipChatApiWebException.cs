@@ -16,7 +16,9 @@ namespace HipChat
         /// <summary>
         /// The HTTP status code returned by HipChat - usually a 4xx
         /// </summary>
-        public HttpStatusCode Status { get; private set; }
+        public HttpStatusCode HttpStatus { get; private set; }
+
+        public WebExceptionStatus Status { get; private set; }
 
         /// <summary>
         /// 
@@ -25,10 +27,14 @@ namespace HipChat
         /// <param name="closeResponse">If True, the WebException.Response object is closed.</param>
         public HipChatApiWebException(WebException ex, bool closeResponse): base(HttpUtils.ReadResponseBody(ex.Response))
         {
-            this.Status = ((HttpWebResponse)ex.Response).StatusCode;
-            if (closeResponse)
+            Status = ex.Status;
+            if (ex.Response != null)
             {
-                ex.Response.Close();
+                HttpStatus = ((HttpWebResponse) ex.Response).StatusCode;
+                if (closeResponse)
+                {
+                    ex.Response.Close();
+                }
             }
         }
     }

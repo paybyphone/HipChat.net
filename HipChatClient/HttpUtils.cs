@@ -17,14 +17,18 @@ namespace HipChat
         /// <returns></returns>
         internal static string ReadResponseBody(WebResponse response)
         {
-            using (Stream receiveStream = response.GetResponseStream())
+            if (response != null)
             {
-                Encoding encode = System.Text.Encoding.GetEncoding("utf-8");
-                using (StreamReader readStream = new StreamReader(receiveStream, encode))
+                using (var receiveStream = response.GetResponseStream())
                 {
-                    return readStream.ReadToEnd();
+                    var encode = Encoding.GetEncoding("utf-8");
+                    using (var readStream = new StreamReader(receiveStream, encode))
+                    {
+                        return readStream.ReadToEnd();
+                    }
                 }
             }
+            return "";
         }
 
         /// <summary>
@@ -52,6 +56,7 @@ namespace HipChat
             }
             catch (WebException we)
             {
+                Console.WriteLine("Exception: {0}", we);
                 throw new HipChatApiWebException(we, true);
             }
         }
